@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Indonesia Anime Convention 2024",
+        "date": "30 Oktober 2024",
+        "src": "./src/assets/events/img-1.png"
+    },
+    {
+        "id": 2,
+        "title": "Comic Frontier 2024",
+        "date": "30 Maret 2024",
+        "src": "./src/assets/events/img-2.png"
+    },
+    {
+        "id": 3,
+        "title": "Indonesia Comic Convention 2024",
+        "date": "9 - 10 November 2024",
+        "src": "./src/assets/events/img-3.png"
+    },
+    {
+        "id": 4,
+        "title": "Citra Semasa Piknik 2024",
+        "date": "31 Mei - 02 Juni 2024",
+        "src": "./src/assets/events/img-4.png"
+    }
+]
