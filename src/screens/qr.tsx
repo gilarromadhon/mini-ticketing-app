@@ -1,38 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   TouchableOpacity,
-  Linking
 } from 'react-native';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 
-const QrScreen = () => {
-    function onSuccess(e: any){
-        Linking.openURL(e.data).catch(err =>
-            console.error('An error occured', err)
-        );
-    }
+function QrScreen({ navigation }: { navigation: any }) {
 
     return (
         <QRCodeScanner
             onRead={({data}) => alert(data)}
             flashMode={RNCamera.Constants.FlashMode.torch}
             showMarker={true}
-            // topContent={
-            //     <Text style={styles.centerText}>
-            //     Go to{' '}
-            //     <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on
-            //     your computer and scan the QR code.
-            //     </Text>
-            // }
+            topContent={
+                <Text style={styles.centerText}>
+                  Scan your QR
+                </Text>
+            }
             bottomContent={
-                <TouchableOpacity style={styles.buttonTouchable}>
-                    <Text style={styles.buttonText}>QR Code Scanner</Text>
+                <TouchableOpacity style={styles.buttonTouchable} onPress={() => navigation.goBack()}>
+                    <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>
             }
         />

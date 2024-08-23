@@ -24,7 +24,7 @@ function LoginScreen() {
             setErrorEmail('Email tidak valid');
             return;
         }
-        if (email === 'admin@mail.com' && password === 'adminadmin') {
+        if (email === 'admin@mail.com' && password === 'admin123') {
             setErrorEmail('');
             setErrorPassword('');
             setEmail('');
@@ -70,7 +70,7 @@ function LoginScreen() {
                   />
                   <Text style={styles.forgotPasswordText}>Lupa Kata Sandi?</Text>
                   <Pressable
-                      style={[styles.loginButton, { opacity: !email || !password ? 0.5 : 1 }]} 
+                      style={[styles.loginButton, !email || !password ? styles.loginButtonOpacity : null ]}
                       onPress={handleLogin}
                       disabled={!email || !password}
                   >
@@ -164,6 +164,9 @@ function LoginScreen() {
       borderRadius: 100,
       justifyContent: 'center',
       alignItems: 'center',
+    },
+    loginButtonOpacity: {
+      opacity: 0.5,
     },
     loginButtonText: {
       color: 'white',

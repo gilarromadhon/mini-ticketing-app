@@ -4,7 +4,6 @@ import { View, TextInput, Text, StyleSheet, Image } from 'react-native';
 const TextField: React.FC<{
   placeholder?: string;
   value?: string;
-  validation?: (text: string) => boolean;
   error?: string;
   type?: string;
   onChangeText: (text: string) => void;
@@ -55,17 +54,16 @@ const styles = StyleSheet.create({
   },
   inputError: {
     borderColor: '#DF1C41',
-    marginTop: 10,
   },
   errorContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 10,
   },
   errorText: {
     color: '#DF1C41',
     fontSize: 12,
-    // marginVertical: 5,
   },
   errorIcon: {
     width: 15,
