@@ -45,21 +45,19 @@ function EventScreen({ route }: { route: any }) {
                 </View>
 
                 <View style={styles.body}>
-                    <Text style={styles.content}>
-                      Lorem ipsum dolor sit amet consectetur. Commodo at vitae ac a enim sed. Sagittis id cursus habitant pellentesque elit placerat. Viverra commodo elementum faucibus aliquet malesuada quisque non. Blandit vitae id vel mi. Et dictumst mattis elit lectus duis imperdiet.
-                    </Text>
-                    <Text style={styles.subtitle}>
-                     Credits:
-                    </Text>
-                    <Text style={styles.content}>
-                      Lorem ipsum dolor sit amet consectetur. Senectus odio neque augue nulla nulla scelerisque sed quam. Mattis convallis lobortis leo adipiscing congue. Felis nam magna ullamcorper magna velit dui vel tellus.
-                    </Text>
-                    <Text style={styles.content}>
-                      Lorem ipsum dolor sit amet consectetur. Tellus netus eu nunc purus semper dolor. Et urna habitant vitae eget risus enim morbi. Mattis velit mi adipiscing purus ante libero commodo ut at. Id venenatis tellus dolor id morbi viverra eget mus ac. In proin fusce.
-                    </Text>
-                    <Text style={styles.content}>
-                    Lorem ipsum dolor sit amet consectetur. Pellentesque eu morbi nulla duis morbi sed in arcu enim. Dignissim id et donec neque. Morbi etiam id et.
-                    </Text>
+                  <Text style={styles.title}>Other Events</Text>
+                  <View style={styles.event}>
+                  <View style={styles.card}>
+                      <Image source={require('../assets/events/img-3.png')} style={styles.image2} />
+                      <Text style={styles.title}>Citra Semasa Piknik 2024</Text>
+                      <Text style={styles.date}>30 Maret 2024</Text>
+                  </View>
+                  <View style={styles.card}>
+                      <Image source={require('../assets/events/img-4.png')} style={styles.image2} />
+                      <Text style={styles.title}>Citra Semasa Piknik 2024</Text>
+                      <Text style={styles.date}>30 Maret 2024</Text>
+                  </View>
+                  </View>
                 </View>
               </View>
             </ScrollView>
@@ -108,6 +106,20 @@ const styles = StyleSheet.create({
     },
     image: {
       height: 240,
+      maxWidth: '100%',
+      borderRadius: 5,
+      resizeMode: 'cover',
+    },
+    card: {
+      width: '80%',
+      marginRight: 20,
+    },
+    event: {
+      display: 'flex',
+      flexDirection: 'row',
+    },
+    image2: {
+      height: 160,
       maxWidth: '100%',
       borderRadius: 5,
       resizeMode: 'cover',
