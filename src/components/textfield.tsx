@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, TextInput, Text, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 const TextField: React.FC<{
   placeholder?: string;
@@ -17,16 +17,28 @@ const TextField: React.FC<{
   const handleTextChange = (text: string) => {
     onChangeText(text);
   };
+  const [show, setShow] = useState(false);
+
+  function clickShow() {
+    setShow(!show);
+  }
 
   return (
     <View style={[styles.container, error && styles.inputError]}>
-      <TextInput
-        style={[styles.input]}
-        placeholder={placeholder}
-        value={value}
-        onChangeText={handleTextChange}
-        secureTextEntry={type === 'password'}
-      />
+      <View style={styles.boxInput}>
+        <TextInput
+          style={[styles.input]}
+          placeholder={placeholder}
+          value={value}
+          onChangeText={handleTextChange}
+          secureTextEntry={type === 'password' && !show}
+        />
+        { type === 'password' &&
+          <TouchableOpacity onPress={clickShow}>
+            <Image source={require('../assets/icons/eye.png')} style={styles.icon} />
+          </TouchableOpacity>
+        }
+      </View>
       {
         error && <View style={styles.errorContainer}>
             <Image source={require('../assets/icons/error.png')} style={styles.errorIcon} />
@@ -42,7 +54,9 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'relative',
   },
-  input: {
+  boxInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
     width: '100%',
     height: 48,
     backgroundColor: 'white',
@@ -51,6 +65,13 @@ const styles = StyleSheet.create({
     borderColor: '#959697',
     marginBottom: 10,
     paddingHorizontal: 20,
+  },
+  input: {
+    flex: 1,
+  },
+  icon: {
+    width: 24,
+    height: 24,
   },
   inputError: {
     borderColor: '#DF1C41',

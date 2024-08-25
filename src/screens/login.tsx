@@ -25,10 +25,6 @@ function LoginScreen() {
             return;
         }
         if (email === 'admin@mail.com' && password === 'admin123') {
-            setErrorEmail('');
-            setErrorPassword('');
-            setEmail('');
-            setPassword('');
             navigation.navigate('Home' as never);
         } else {
             setErrorEmail('Email tidak terdaftar');

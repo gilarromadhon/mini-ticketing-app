@@ -23,7 +23,10 @@ function App(): React.JSX.Element {
               fontFamily: 'ComicBookBold',
             },
             headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()}>
+              <TouchableOpacity onPress={() => navigation.reset({
+                index: 0,
+                routes: [{ name: 'Login' }],
+              })}>
                 <Image source={require('./src/assets/icons/back.png')} style={{ width: 8, height: 16, marginRight: 12 }} />
               </TouchableOpacity>
             ),

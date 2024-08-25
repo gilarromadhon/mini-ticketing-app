@@ -1,29 +1,58 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
     Image,
     SafeAreaView,
     ScrollView,
     StyleSheet,
     Text,
+    TouchableOpacity,
     View,
 } from 'react-native';
 
+const DATA = [
+  {
+    id: 1,
+    title: 'Indonesia Anime Convention 2024',
+    date: '30 Oktober 2024',
+    src: require('../assets/events/img-1.png'),
+  },
+  {
+    id: 2,
+    title: 'Comic Frontier 2024',
+    date: '30 Maret 2024',
+    src: require('../assets/events/img-2.png'),
+  },
+  {
+    id: 3,
+    title: 'Indonesia Comic Convention 2024',
+    date: '9 - 10 November 2024',
+    src: require('../assets/events/img-3.png'),
+  },
+  {
+    id: 4,
+    title: 'Citra Semasa Piknik 2024',
+    date: '31 Mei - 02 Juni 2024',
+    src: require('../assets/events/img-4.png'),
+  },
+];
 
-function EventScreen({ route }: { route: any }) {
+function EventScreen({ navigation, route }: { navigation: any, route: any }) {
   const { titleName } = route.params;
   const { date } = route.params;
   const { id } = route.params;
+  const scrollViewRef = useRef<ScrollView>(null);
 
     return (
         <SafeAreaView style={styles.root}>
             <ScrollView
+                ref={scrollViewRef}
                 contentInsetAdjustmentBehavior="automatic"
             >
               <View style={styles.container}>
-                {id === 1 && <Image source={require('../assets/events/img-1.png')} style={styles.image} />}
-                {id === 2 && <Image source={require('../assets/events/img-2.png')} style={styles.image} />}
-                {id === 3 && <Image source={require('../assets/events/img-3.png')} style={styles.image} />}
-                {id === 4 && <Image source={require('../assets/events/img-4.png')} style={styles.image} />}
+                {DATA.filter(item => item.id === id).map(item => (
+                  <Image key={item.id} source={item.src} style={styles.image} />
+                ))}
+
                 <View style={styles.body}>
                     <Text style={styles.title}>{titleName}</Text>
                     <Text style={styles.date}>{date}</Text>
@@ -46,18 +75,27 @@ function EventScreen({ route }: { route: any }) {
 
                 <View style={styles.body}>
                   <Text style={styles.title}>Other Events</Text>
-                  <View style={styles.event}>
-                  <View style={styles.card}>
-                      <Image source={require('../assets/events/img-3.png')} style={styles.image2} />
-                      <Text style={styles.title}>Citra Semasa Piknik 2024</Text>
-                      <Text style={styles.date}>30 Maret 2024</Text>
-                  </View>
-                  <View style={styles.card}>
-                      <Image source={require('../assets/events/img-4.png')} style={styles.image2} />
-                      <Text style={styles.title}>Citra Semasa Piknik 2024</Text>
-                      <Text style={styles.date}>30 Maret 2024</Text>
-                  </View>
-                  </View>
+                  <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {DATA.filter(item => item.id !== id).map(item => (
+                      <TouchableOpacity
+                        key={item.id}
+                        onPress={() => {
+                          navigation.navigate('Event', {
+                            id: item.id,
+                            titleName: item.title,
+                            date: item.date,
+                          });
+                          scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+                        }}
+                      >
+                        <View key={item.id} style={styles.card}>
+                            <Image source={item.src} style={styles.image2} />
+                            <Text style={styles.title}>{item.title}</Text>
+                            <Text style={styles.date}>{item.date}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    ))}
+                  </ScrollView>
                 </View>
               </View>
             </ScrollView>
@@ -111,15 +149,11 @@ const styles = StyleSheet.create({
       resizeMode: 'cover',
     },
     card: {
-      width: '80%',
+      width: 300,
       marginRight: 20,
     },
-    event: {
-      display: 'flex',
-      flexDirection: 'row',
-    },
     image2: {
-      height: 160,
+      height: 180,
       maxWidth: '100%',
       borderRadius: 5,
       resizeMode: 'cover',
