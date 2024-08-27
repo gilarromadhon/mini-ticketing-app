@@ -36,3 +36,7 @@ The first challenge I encountered was setting up React Native via CLI, it turned
 The second is that for QR, there is a problem when the Android emulator opens the camera and uses a MacBook camera, when I open it, my MacBook immediately restarts. I don't know if my macbook is not strong enough or because the latest OS crashes (OS Sonoma M1). What I read on the forums is that you have to downgrade the OS beforehand, but this will take a lot of time
 
 
+## Login Username Password
+For Login using 
+username : admin@mail.com
+password: admin123
